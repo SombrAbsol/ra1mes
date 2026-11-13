@@ -77,7 +77,7 @@ Run `ra1mes -h` or `ra1mes --help` to list all the options.
 > If you need to rebuild the program, run `make clean` or delete the `build` directory.
 
 ## Credits
-ra1mes by [SombrAbsol](https://github.com/SombrAbsol).
+* ra1mes by [SombrAbsol](https://github.com/SombrAbsol)
 
 ## License
 ra1mes is free software. You can redistribute it and/or modify it under the [terms of the Expat License](/LICENSE) as published by the Massachusetts Institute of Technology.

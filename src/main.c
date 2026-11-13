@@ -463,7 +463,7 @@ int main(int argc, char **argv)
 
     /*
      * Directories are listed before anything is written, and files are loaded
-     * and confirmed first. Of two files with one output, the later one wins.
+     * and confirmed first. Of two files with one output, the later one fails.
      */
     FileJob *jobs = NULL;
     int planned = 0;
@@ -512,22 +512,25 @@ int main(int argc, char **argv)
                 free(job->data);
                 continue;
             }
+            while (j < planned && strcmp(jobs[j].out, job->out)) {
+                ++j;
+            }
+            if (j < planned) {
+                fprintf(stderr,
+                    "%s: '%s' would overwrite the output of '%s'\n",
+                    programName,
+                    job->in,
+                    jobs[j].in);
+                failed = true;
+                free(job->data);
+                continue;
+            }
             if (!yes && strcmp(job->out, "-") && path_exists(job->out, &exists)
                 && !confirm_overwrite(job->out)) {
                 free(job->data);
                 continue;
             }
-            while (j < planned && strcmp(jobs[j].out, job->out)) {
-                ++j;
-            }
-            if (j == planned) {
-                ++planned;
-            } else if (yes || confirm_overwrite(job->out)) {
-                free(jobs[j].data);
-                jobs[j] = *job;
-            } else {
-                free(job->data);
-            }
+            ++planned;
         }
         if (grown && isDir && found == 0 && verbose != 0) {
             say("No DAT text or JSON files found in '%s'\n", in);
