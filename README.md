@@ -12,7 +12,7 @@ DAT text file converter for *Pokémon Ranger*.
 
 This game stores its texts in DAT files, an extension it also uses for files holding other kinds of data. This tool allows you to convert DAT text files to JSON and vice versa, writing their control codes as readable markup. You can [download the latest build](#download) or [build the program from source](#building).
 
-For more information about the DAT text format, see [the documentation](/docs/dat.md).
+For more information about the DAT text format, see [the documentation](/docs/dat.md). To convert the texts of *Pokémon Ranger: Shadows of Almia* and *Pokémon Ranger: Guardian Signs*, see [ra23mes](https://github.com/SombrAbsol/ra23mes).
 
 ## Download
 |        | Linux | macOS | Windows |
